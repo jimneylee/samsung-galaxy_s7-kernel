@@ -1,0 +1,26 @@
+on init
+    chown system system /dev/dek_evt
+    chmod 600 /dev/dek_evt
+
+    chown system 8001 /dev/dek_req
+    chmod 660 /dev/dek_req
+
+    chown system 8001 /dev/sdp_mm
+    chmod 660 /dev/sdp_mm
+
+    chown system 8001 /dev/sdp_dlp
+    chmod 660 /dev/sdp_dlp
+
+on boot
+
+service epmlogd /system/bin/epmlogd
+    class main
+    user system
+    group system log shell
+    oneshot
+
+service sdp_cryptod /system/bin/sdp_cryptod
+    class main
+    socket sdp stream 0660 system system
+    user system
+    group system

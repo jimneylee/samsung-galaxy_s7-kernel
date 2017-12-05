@@ -1,2 +1,5 @@
 Image
 Image.gz
+ramdisk.img
+dtb.img
+dtb/
