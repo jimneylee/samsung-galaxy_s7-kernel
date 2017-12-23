@@ -1,0 +1,13 @@
+##
+##  Run scripts in /system/etc/init.d on boot
+##
+
+on property:sys.boot_completed=1
+    start initd-scripts
+
+service initd-scripts /sbin/exec_initd_scripts.sh
+    user root
+    group root
+    seclabel u:r:init:s0
+    oneshot
+    disabled

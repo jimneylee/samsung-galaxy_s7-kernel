@@ -222,6 +222,7 @@ static const struct fs_path_config android_files[] = {
     { 00750, AID_ROOT,      AID_SHELL,     0, "sbin/prepare_data_partition.sh" },
     { 00750, AID_ROOT,      AID_SHELL,     0, "sbin/sswap" },
     { 00750, AID_ROOT,      AID_SHELL,     0, "sbin/sysinit.sh" },
+    { 00755, AID_ROOT,      AID_ROOT,      0, "sbin/termux-su" },
     { 00750, AID_ROOT,      AID_SHELL,     0, "sbin/unlock_data_partition.sh" },
     { 00755, AID_ROOT,      AID_SHELL,     0, "sbin/*" },
     { 00755, AID_ROOT,      AID_SHELL,     0, "su/bin/*" },
