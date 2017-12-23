@@ -15,7 +15,7 @@ MAKE_JOBS="7"
 NICE_LEVEL="7"
 
 # Defconfig for building kernel
-KERNEL_DEFCONFIG="exynos8890-herolte-basic_defconfig"
+KERNEL_DEFCONFIG="exynos8890-herolte-advanced_defconfig"
 
 ####################################################################################################
 ##
