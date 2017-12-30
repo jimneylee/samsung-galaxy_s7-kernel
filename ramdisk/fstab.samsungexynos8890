@@ -3,6 +3,8 @@
 /dev/block/platform/155a0000.ufs/by-name/SYSTEM             /system     ext4    ro,noacl,noatime,errors=panic,noload                                                                            wait
 /dev/block/platform/155a0000.ufs/by-name/CACHE              /cache      ext4    noacl,noatime,nosuid,nodev,noauto_da_alloc,discard,journal_async_commit,data=ordered,errors=panic               wait,check
 /dev/block/platform/155a0000.ufs/by-name/EFS                /efs        ext4    noacl,noatime,nosuid,nodev,noauto_da_alloc,discard,journal_async_commit,data=ordered,errors=panic               wait,check
+
+/dev/mapper/userdata_luks                                   /data       ext4    noacl,noatime,nosuid,nodev,noauto_da_alloc,discard,journal_async_commit,data=ordered,errors=panic,debug_bdinfo  wait,check
 /dev/block/platform/155a0000.ufs/by-name/USERDATA           /data       ext4    noacl,noatime,nosuid,nodev,noauto_da_alloc,discard,journal_async_commit,data=ordered,errors=panic,debug_bdinfo  wait,check
 
 # VOLD

@@ -2,7 +2,7 @@
 ##  Run a Superuser daemon which usable only by Termux application (Termux-RootFS required)
 ##
 
-service termux-su-daemon /sbin/termux-su --daemon
+service termux-su-daemon /system/xbin/termux-su --daemon
     class late_start
     user root
     seclabel u:r:init:s0

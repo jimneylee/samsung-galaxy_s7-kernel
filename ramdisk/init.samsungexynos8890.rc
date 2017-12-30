@@ -308,6 +308,9 @@ service ipsec-daemon /system/bin/IPSecService
     group system net_raw inet net_admin
 
 on fs
+    ## unlock data partition if it is LUKS-encrypted
+    exec - root root -- /sbin/prepare_data_partition.sh
+
     mount_all /fstab.samsungexynos8890
     setprop ro.crypto.fuse_sdcard true
 

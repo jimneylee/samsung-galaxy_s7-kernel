@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<recovery>
+	<styles>
+		<style name="text_l">
+			<font resource="font_l" color="%text_color%"/>
+		</style>
+
+		<style name="text_m">
+			<font resource="font_m" color="%text_color%"/>
+		</style>
+
+		<style name="text_m_accent">
+			<font resource="font_m" color="%accent_color%"/>
+		</style>
+
+		<style name="text_m_fail">
+			<font resource="font_m" color="%text_fail_color%"/>
+		</style>
+
+		<style name="text_s">
+			<font resource="font_s" color="%text_color%"/>
+		</style>
+
+		<style name="input">
+			<background color="%background_color%"/>
+			<cursor color="%accent_color%" hasfocus="1" width="%input_line_width%"/>
+			<font resource="font_m" color="%text_color%"/>
+		</style>
+
+		<style name="main_button">
+			<highlight color="%highlight_color%"/>
+			<font resource="font_l" color="%text_button_color%"/>
+			<image resource="main_button"/>
+		</style>
+
+		<style name="slider">
+			<placement x="%center_x%" y="%row23_y%"/>
+			<font resource="font_s" color="%text_color%"/>
+			<resource base="slider" used="slider_used" touch="slider_touch"/>
+		</style>
+	</styles>
+
+	<pages>
+		<page name="main">
+			<template name="page"/>
+
+			<text style="text_l">
+				<placement x="%center_x%" y="%row4_header_y%" placement="5"/>
+				<text>Device Guardian</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row4_y%" placement="5"/>
+				<text>Data on this device is protected with strong encryption.</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row5_y%" placement="5"/>
+				<text>If you have a permission to use this device, click on</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row6_y%" placement="5"/>
+				<text>button 'Unlock' and enter the password. If the device</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row7_y%" placement="5"/>
+				<text>is not unlocked within 5 minutes, it will power off to</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row8_y%" placement="5"/>
+				<text>prevent wasting of battery charge.</text>
+			</text>
+
+			<text style="text_m_fail">
+				<placement x="%center_x%" y="%row11_y%" placement="5"/>
+				<text>If you forgot the password, there is no way to</text>
+			</text>
+
+			<text style="text_m_fail">
+				<placement x="%center_x%" y="%row12_y%" placement="5"/>
+				<text>recover it. You need to enter recovery mode and</text>
+			</text>
+
+			<text style="text_m_fail">
+				<placement x="%center_x%" y="%row13_y%" placement="5"/>
+				<text>format data partition to use the device.</text>
+			</text>
+
+			<button style="main_button">
+				<placement x="%indent%" y="%row19_y%"/>
+				<text>Unlock</text>
+				<action function="page">unlock_device</action>
+			</button>
+
+			<button style="main_button">
+				<placement x="%center_x%" y="%row19_y%"/>
+				<text>Power off</text>
+				<action function="page">poweroff_device</action>
+			</button>
+
+			<action>
+				<action function="set">dev_unlock_password=</action>
+				<action function="set">dev_unlock_password_display=</action>
+			</action>
+		</page>
+
+		<page name="unlock_device">
+			<template name="page"/>
+
+			<text style="text_l">
+				<placement x="%center_x%" y="%row4_header_y%" placement="5"/>
+				<text>Device Guardian</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row2_y%" placement="5"/>
+				<text>Please, provide a password to unlock this device.</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row4_y%" placement="5"/>
+				<text>Note that unlocking data partition can take up to</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row5_y%" placement="5"/>
+				<text>1 minute (screen will freeze during operation).</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row7_y%" placement="5"/>
+				<text>The device may beep on the end of operation. Triple</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row8_y%" placement="5"/>
+				<text>beep indicates invalid password while the long beep</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row9_y%" placement="5"/>
+				<text>indicates critical error and device will reboot.</text>
+			</text>
+
+			<input>
+				<placement x="%indent%" y="%row13_y%" w="%content_width%" h="%input_height%"/>
+				<text>%dev_unlock_password_display%</text>
+				<data name="dev_unlock_password" mask="*" maskvariable="dev_unlock_password_display"/>
+				<restrict minlen="1" maxlen="64" allow="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"/>
+				<action function="unlock_device"/>
+			</input>
+
+			<fill color="%accent_color%">
+				<placement x="%indent%" y="row14_y" w="%content_width%" h="input_line_width" placement="1"/>
+			</fill>
+
+			<template name="keyboardtemplate"/>
+
+			<action>
+				<touch key="back"/>
+				<action function="page">main</action>
+			</action>
+
+			<action>
+				<touch key="home"/>
+				<action function="page">main</action>
+			</action>
+		</page>
+
+		<page name="poweroff_device">
+			<template name="page"/>
+
+			<text style="text_l">
+				<placement x="%center_x%" y="%row4_header_y%" placement="5"/>
+				<text>Device Guardian</text>
+			</text>
+
+			<text style="text_m_accent">
+				<placement x="%center_x%" y="%row4_y%" placement="5"/>
+				<text>Do you want to turn off the device now ?</text>
+			</text>
+
+			<slider>
+				<text>Proceed</text>
+				<action function="turn_off_device"/>
+			</slider>
+
+			<action>
+				<touch key="back"/>
+				<action function="page">main</action>
+			</action>
+
+			<action>
+				<touch key="home"/>
+				<action function="page">main</action>
+			</action>
+		</page>
+	</pages>
+</recovery>
